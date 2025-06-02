@@ -85,14 +85,15 @@ export function DragDropZone({
 
         {/* Situation Cards */}
         {sortedSituations.length > 0 ? (
-          <div className="relative z-10 flex flex-wrap gap-3">
-            {sortedSituations.map((situation) => (
+          <div className="relative z-10 min-h-24">
+            {sortedSituations.map((situation, index) => (
               <div
                 key={situation.id}
-                className="absolute"
+                className="absolute transition-all duration-200"
                 style={{ 
                   left: `${Math.min(Math.max(situation.position, 5), 85)}%`,
-                  transform: 'translateX(-50%)'
+                  transform: 'translateX(-50%)',
+                  top: `${Math.floor(index / 3) * 120}px`
                 }}
               >
                 <SituationCard
@@ -109,7 +110,8 @@ export function DragDropZone({
           <div className="absolute inset-0 flex items-center justify-center text-slate-500 pointer-events-none">
             <div className="text-center">
               <i className="fas fa-mouse-pointer text-2xl mb-2 opacity-50"></i>
-              <p>Drag and drop situations here to position them on the scale</p>
+              <p>Situations will appear here once players submit them</p>
+              <p className="text-xs mt-1">You can drag your own situation to reposition it</p>
             </div>
           </div>
         )}

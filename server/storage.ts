@@ -58,7 +58,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateGameStatus(id: string, status: string): Promise<void> {
-    await db.update(games).set({ status }).where(eq(games.id, id));
+    await db.update(games).set({ status: status as any }).where(eq(games.id, id));
   }
 
   async updateGameCurrentRound(id: string, roundId: string | null): Promise<void> {

@@ -85,8 +85,10 @@ export class SocketClient {
     if (this.roomCode && !this.reconnectTimeout) {
       this.reconnectTimeout = setTimeout(() => {
         console.log('Attempting to reconnect...');
-        this.connect(this.roomCode!);
-      }, 3000);
+        if (this.roomCode) {
+          this.connect(this.roomCode);
+        }
+      }, 5000);
     }
   }
 }
