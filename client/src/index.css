@@ -89,13 +89,30 @@
 
 /* Drag and drop styles */
 .dragging {
-  opacity: 0.5;
-  transform: rotate(5deg);
+  opacity: 0.7;
+  transform: rotate(2deg) scale(1.05);
+  z-index: 1000;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .drop-zone-active {
   border-color: hsl(263 70% 50%);
   background-color: hsla(263 70% 50% / 0.1);
+}
+
+/* Enhanced drag feedback */
+[draggable="true"] {
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+[draggable="true"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+[draggable="true"]:active {
+  cursor: grabbing;
 }
 
 /* Game-specific animations */

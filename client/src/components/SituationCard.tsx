@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 
 interface SituationWithPlayer {
@@ -30,11 +31,23 @@ export function SituationCard({
   isFreeRound = false 
 }: SituationCardProps) {
   const { handleDragStart, handleDragEnd } = useDragAndDrop();
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleDragStartEvent = (e: React.DragEvent) => {
-    if (!canEdit || (!isOwned && !isFreeRound)) return;
+    if (!canEdit || (!isOwned && !isFreeRound)) {
+      e.preventDefault();
+      return;
+    }
     
     e.dataTransfer.setData('text/plain', situation.id);
+    e.dataTransfer.effectAllowed = 'move';
+    
+    // Create drag image
+    const dragElement = e.currentTarget as HTMLElement;
+    const rect = dragElement.getBoundingClientRect();
+    e.dataTransfer.setDragImage(dragElement, rect.width / 2, rect.height / 2);
+    
+    setIsDragging(true);
     handleDragStart({
       id: situation.id,
       type: 'situation',
@@ -43,6 +56,7 @@ export function SituationCard({
   };
 
   const handleDragEndEvent = () => {
+    setIsDragging(false);
     handleDragEnd();
   };
 
@@ -55,6 +69,7 @@ export function SituationCard({
       onDragEnd={handleDragEndEvent}
       className={`
         p-4 rounded-xl border shadow-lg transition-all duration-200
+        ${isDragging ? 'dragging' : ''}
         ${canDrag ? 'cursor-move hover:shadow-xl' : 'cursor-default'}
         ${isOwned 
           ? 'bg-primary/20 border-primary/50 hover:border-primary' 

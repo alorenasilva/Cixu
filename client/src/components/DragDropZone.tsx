@@ -34,6 +34,11 @@ export function DragDropZone({
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -73,6 +78,7 @@ export function DragDropZone({
           }
         `}
         onDragOver={handleDragOver}
+        onDragEnter={handleDragEnter}
         onDrop={handleDrop}
       >
         {/* Position indicators */}
