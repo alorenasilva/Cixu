@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id             String      @id @default(cuid())
+  roomCode       String      @unique
+  status         GameStatus  @default(LOBBY)
+  createdAt      DateTime    @default(now())
+  hostId         String
+  theme          String?     // Only if selected
+  prompts        Prompt[]
+  players        Player[]
+  rounds         Round[]
+  currentRoundId String?     @unique
+  currentRound   Round?      @relation("CurrentRound", fields: [currentRoundId], references: [id])
+}
+
+model Player {
+  id        String   @id @default(cuid())
+  name      String
+  color     String
+  isHost    Boolean  @default(false)
+  gameId    String
+  game      Game     @relation(fields: [gameId], references: [id])
+  situations Situation[]
+}
+
+model Prompt {
+  id        String   @id @default(cuid())
+  text      String
+  gameId    String
+  game      Game     @relation(fields: [gameId], references: [id])
+  used      Boolean  @default(false)
+}
+
+model Round {
+  id           String       @id @default(cuid())
+  promptId     String
+  prompt       Prompt       @relation(fields: [promptId], references: [id])
+  gameId       String
+  game         Game         @relation(fields: [gameId], references: [id])
+  situations   Situation[]
+  isFreeRound  Boolean      @default(false)
+  completed    Boolean      @default(false)
+  roundNumber  Int
+}
+
+model Situation {
+  id         String   @id @default(cuid())
+  content    String
+  number     Int
+  position   Int
+  playerId   String
+  player     Player   @relation(fields: [playerId], references: [id])
+  roundId    String
+  round      Round    @relation(fields: [roundId], references: [id])
+}
+
+enum GameStatus {
+  LOBBY
+  IN_PROGRESS
+  FREE_ROUND
+  SHOW_RESULTS
+  COMPLETED
+}
