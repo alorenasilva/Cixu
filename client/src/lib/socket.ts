@@ -27,10 +27,14 @@ export class SocketClient {
       }
     };
 
-    this.socket.onclose = () => {
-      console.log('WebSocket disconnected');
+    this.socket.onclose = (event) => {
+      console.log('WebSocket disconnected', event.code, event.reason);
       this.emit('disconnected', {});
-      this.scheduleReconnect();
+      
+      // Only reconnect if it wasn't a normal closure
+      if (event.code !== 1000 && event.code !== 1001 && this.roomCode) {
+        this.scheduleReconnect();
+      }
     };
 
     this.socket.onerror = (error) => {
