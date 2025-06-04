@@ -15,11 +15,11 @@ A real-time multiplayer game where players create situations based on hidden num
 
 ## Tech Stack
 
-- **Frontend**: React 18, TypeScript, Tailwind CSS, Wouter (routing)
+- **Frontend**: Angular 20, TypeScript, Tailwind CSS, Standalone Components
 - **Backend**: Express.js, TypeScript, WebSocket
 - **Database**: PostgreSQL with Drizzle ORM
 - **Real-time**: WebSocket for live multiplayer features
-- **UI Components**: Shadcn/ui components with custom styling
+- **UI Components**: Custom Angular components with Font Awesome icons
 
 ## Prerequisites
 
@@ -220,7 +220,7 @@ NODE_ENV=development
 - **Shared Types**: Common TypeScript types in `/shared` directory
 - **Real-time Sync**: WebSocket events keep all players synchronized
 - **Drag & Drop**: HTML5 drag API with custom positioning logic
-- **State Management**: React Context for game state with reducer pattern
+- **State Management**: Angular services with RxJS for reactive state management
 
 ## Contributing
 

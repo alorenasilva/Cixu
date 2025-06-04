@@ -1,0 +1,27 @@
+.text-primary { 
+  color: hsl(263 70% 50%); 
+}
+
+.bg-primary { 
+  background-color: hsl(263 70% 50%); 
+}
+
+.bg-primary\/20 { 
+  background-color: hsla(263 70% 50% / 0.2); 
+}
+
+.bg-primary\/90 { 
+  background-color: hsla(263 70% 50% / 0.9); 
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: hsla(263 70% 50% / 0.9);
+}
+
+.focus\:ring-primary:focus {
+  --tw-ring-color: hsl(263 70% 50%);
+}
+
+.hover\:text-primary\/80:hover {
+  color: hsla(263 70% 50% / 0.8);
+}
