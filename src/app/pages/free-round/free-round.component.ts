@@ -184,7 +184,8 @@ export class FreeRoundComponent implements OnInit, OnDestroy {
           return;
         }
         
-        if (state.status === 'SHOW_RESULTS') {
+        // Handle status changes
+        if (state.status !== 'FREE_ROUND' && state.status === 'SHOW_RESULTS') {
           this.router.navigate(['/results']);
         }
       })

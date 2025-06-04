@@ -181,10 +181,13 @@ export class GamePlayComponent implements OnInit, OnDestroy {
           return;
         }
         
-        if (state.status === 'FREE_ROUND') {
-          this.router.navigate(['/free-round']);
-        } else if (state.status === 'SHOW_RESULTS') {
-          this.router.navigate(['/results']);
+        // Handle status changes
+        if (state.status !== 'IN_PROGRESS') {
+          if (state.status === 'FREE_ROUND') {
+            this.router.navigate(['/free-round']);
+          } else if (state.status === 'SHOW_RESULTS') {
+            this.router.navigate(['/results']);
+          }
         }
       })
     );

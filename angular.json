@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "situationsort": {
+    "SituationSort": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
+          "style": "css",
           "standalone": true
         }
       },
@@ -18,13 +18,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/situationsort",
+            "outputPath": "dist/public",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -58,18 +62,15 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "situationsort:build:production"
+              "buildTarget": "SituationSort:build:production"
             },
             "development": {
-              "buildTarget": "situationsort:build:development"
+              "buildTarget": "SituationSort:build:development"
             }
           },
           "defaultConfiguration": "development"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
