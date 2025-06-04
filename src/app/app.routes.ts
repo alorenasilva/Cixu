@@ -3,26 +3,26 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+    component: HomeComponent
   },
   {
     path: 'lobby',
-    loadComponent: () => import('./pages/game-lobby/game-lobby.component').then(m => m.GameLobbyComponent)
+    component: GameLobbyComponent
   },
   {
     path: 'game',
-    loadComponent: () => import('./pages/game-play/game-play.component').then(m => m.GamePlayComponent)
+    component: GamePlayComponent
   },
   {
     path: 'free-round',
-    loadComponent: () => import('./pages/free-round/free-round.component').then(m => m.FreeRoundComponent)
+    component: FreeRoundComponent
   },
   {
     path: 'results',
-    loadComponent: () => import('./pages/results/results.component').then(m => m.ResultsComponent)
+    component: ResultsComponent
   },
   {
     path: '**',
-    loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent)
+    component: NotFoundComponent
   }
 ];
