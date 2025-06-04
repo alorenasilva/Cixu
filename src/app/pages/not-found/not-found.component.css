@@ -1,0 +1,11 @@
+.text-primary { 
+  color: hsl(263 70% 50%); 
+}
+
+.bg-primary { 
+  background-color: hsl(263 70% 50%); 
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: hsla(263 70% 50% / 0.9);
+}
