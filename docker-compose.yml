@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: situationsort
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/situationsort
+      PGHOST: db
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: situationsort
+      PGPORT: 5432
+      NODE_ENV: production
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    command: sh -c "npm run db:push && npm start"
+volumes:
+  db-data:
