@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🎮 SituationSort Game Setup"
+echo "🎮 Cixu Game Setup"
 echo "=========================="
 
 # Check if Node.js is installed
